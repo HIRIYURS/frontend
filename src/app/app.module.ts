@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule, MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, MatDividerModule, MatSnackBarModule } from '@angular/material';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
+//import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +21,10 @@ import { ViewuserComponent } from './components/viewuser/viewuser.component';
 import { ViewprojectComponent } from './components/viewproject/viewproject.component';
 import { AdduserComponent } from './components/adduser/adduser.component';
 import { AddprojectComponent } from './components/addproject/addproject.component';
+
+import { UserService } from './user.service';
+import { TaskService } from './task.service';
+import { ProjectService } from './project.service';
 
 const routes: Routes = [
   { path: 'addtask', component: AddtaskComponent},
@@ -68,10 +72,13 @@ const routes: Routes = [
     MatDividerModule, 
     MatSnackBarModule,
     MatSliderModule,
-    MatDatepickerModule,
-    MatMomentDateModule    
+    MatDatepickerModule    
   ],
-  providers: [],
+  providers: [
+    TaskService,
+    ProjectService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
