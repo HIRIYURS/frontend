@@ -60,7 +60,7 @@ export class TaskService {
   }
 
   endTask(id) {
-    return this.http.get(`${this.uri}/tasks/endtask/${id}`);
+    return this.http.get(`${this.uri}/task/endtask/${id}`);
   }
 
 }
