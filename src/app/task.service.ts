@@ -22,22 +22,34 @@ export class TaskService {
   }
 
   addTask(task, start_date, end_date, priority, status, parent, project, user) {
+    let tmptask: any;
     if (priority === undefined) {
       priority = "10";
     }
-    let Task = {
-      task: task,
-      start_date: start_date,
-      end_date: end_date,
-      priority: priority,
-      status: status,
-      project: project,
-      user: user
-    };
-    if (parent != undefined) {
-      Task[parent] = parent;
+    if (parent === undefined) {
+      tmptask = {
+        task: task,
+        start_date: start_date,
+        end_date: end_date,
+        priority: priority,
+        status: status,
+        project: project,
+        user: user
+      };
+    } else {
+      tmptask = {
+        task: task,
+        start_date: start_date,
+        end_date: end_date,
+        priority: priority,
+        status: status,
+        project: project,
+        parent: parent,
+        user: user
+      };
     }
-   return this.http.post(`${this.uri}/task/add`, Task);
+
+   return this.http.post(`${this.uri}/task/add`, tmptask);
   }
 
   editTask(id, task, start_date, end_date, priority, status, parent, project, user) {
