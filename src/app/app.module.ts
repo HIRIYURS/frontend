@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MatToolbarModule, MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, MatDividerModule, MatSnackBarModule, MatAutocompleteModule } from '@angular/material';
+import { MatToolbarModule, MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, MatDividerModule, MatSnackBarModule, MatAutocompleteModule, MatNativeDateModule } from '@angular/material';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 //import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -74,7 +74,8 @@ const routes: Routes = [
     MatSnackBarModule,
     MatSliderModule,
     MatDatepickerModule,
-    MatAutocompleteModule    
+    MatAutocompleteModule,
+    MatNativeDateModule    
   ],
   providers: [
     TaskService,

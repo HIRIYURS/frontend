@@ -1,3 +1,75 @@
-<p>
-  addtask works!
-</p>
+<div>
+  <br>
+  <mat-card>
+    <button mat-raised-button color="primary" class="mat-column-right" routerLink="/addproject">Add Project</button>
+    <button mat-raised-button color="primary" class="mat-column-right" routerLink="/adduser">Add User</button>
+    <button mat-raised-button color="secondary" class="mat-column-right" routerLink="/addtask">Add Task</button>
+    <button mat-raised-button color="primary" class="mat-column-right" routerLink="/viewtask">View Task</button>
+    <br><br>
+  </mat-card>
+  <mat-divider></mat-divider>
+  <br>  
+  <mat-card>
+    <section class="mat-typography">
+      <h3>Create A New Task</h3>
+    </section>
+    <mat-divider></mat-divider>
+    <br>
+    <form [formGroup]="createForm" class="create-form">
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Task title" formControlName="task" #task>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <span class="label"></span>
+        <mat-select placeholder="Project" name="project" formControlName="project" #project>
+            <mat-option *ngFor="let myproject of projects" [value]="myproject._id">
+              {{myproject.project_name}}
+            </mat-option>
+        </mat-select>  
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <span class="label"></span>
+        <mat-select placeholder="User" name="user" formControlName="user" #user>
+            <mat-option *ngFor="let myuser of users" [value]="myuser._id">
+              {{myuser.first_name}}
+            </mat-option>
+        </mat-select>  
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="startDate" placeholder="Task Start Date" formControlName="start_date" #start_date>
+        <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+        <mat-datepicker #startDate></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="endDate" placeholder="Task End date" formControlName="end_date" #end_date>
+        <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+        <mat-datepicker #endDate></mat-datepicker>
+      </mat-form-field>  
+
+      <mat-form-field class="field-full-width">
+          <span class="label"></span>
+          <mat-select placeholder="Parent" name="parent" formControlName="parent" #parent>
+              <mat-option *ngFor="let myparent of parents" [value]="myparent._id">
+                {{myparent.parent_task}}
+              </mat-option>
+          </mat-select>  
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <input matInput type="number" placeholder="Priority" formControlName="priority" #priority>
+        <span matPrefix="0"></span>
+        <mat-slider min="1" max="30" step="1" thumbLabel formControlName="priority" #priority></mat-slider>
+        <span matSuffix="30"></span>
+      </mat-form-field>
+
+      <mat-divider></mat-divider>
+      <br><br>
+      <button mat-raised-button color="accent" routerLink="/viewtask">Cancel</button>
+      <button type="submit" (click)="createTask(task.value, start_date.value, end_date.value, priority.value, parent.value, project.value, user.value)" [disabled]="createForm.prestine || createForm.invalid" mat-raised-button color="primary">Save</button>
+    </form>
+  </mat-card>
+</div>
