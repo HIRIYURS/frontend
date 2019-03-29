@@ -15,3 +15,7 @@ table {
   .example-full-width {
     width: 30%;
   }
+
+  th.mat-sort-header-sorted {
+    color: black;
+  }

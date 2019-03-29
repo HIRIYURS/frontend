@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatTableDataSource } from '@angular/material';
+import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 //import {formatDate } from '@angular/common';
 import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
@@ -9,10 +9,12 @@ import {map, startWith} from 'rxjs/operators';
 import { Task } from '../../task.model';
 import { Project } from '../../project.model';
 import { ParentTask } from '../../parent.model';
+import { User } from '../../user.model';
 
 import { TaskService } from '../../task.service';
 import { ProjectService } from '../../project.service';
 import { ParentService } from '../../parent.service';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-viewtask',
@@ -32,9 +34,13 @@ export class ViewtaskComponent implements OnInit {
   displayedColumns = ['task', 'parent', 'user', 'start_date', 'end_date', 'priority', 'actions'];
   dataSource: any;
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
   constructor(private taskService: TaskService, 
               private projectService: ProjectService,
               private parentService: ParentService,
+              private userService: UserService,
               private router: Router,
               private fb: FormBuilder) { }
 
@@ -112,9 +118,16 @@ export class ViewtaskComponent implements OnInit {
                   tmptask.parent = res.parent_task;
                 });
               }
+              if (tmptask.user !== undefined) {
+                this.userService.getUserById(tmptask.user).subscribe((res: User) => {  
+                  tmptask.user = res.first_name;
+                });
+              }
           });
 
           this.dataSource = new MatTableDataSource(this.taskList);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
         });
 
   }
