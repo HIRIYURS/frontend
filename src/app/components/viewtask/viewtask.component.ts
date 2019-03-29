@@ -2,12 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material';
 //import {formatDate } from '@angular/common';
+import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 import { Task } from '../../task.model';
 import { Project } from '../../project.model';
+import { ParentTask } from '../../parent.model';
 
 import { TaskService } from '../../task.service';
 import { ProjectService } from '../../project.service';
+import { ParentService } from '../../parent.service';
 
 @Component({
   selector: 'app-viewtask',
@@ -15,18 +20,23 @@ import { ProjectService } from '../../project.service';
   styleUrls: ['./viewtask.component.css']
 })
 export class ViewtaskComponent implements OnInit {
+  projectForm: FormGroup = this.fb.group({
+    ProjectName: '',
+  });
+  myControl = new FormControl();
+  filteredOptions: Observable<Project[]>;  
   projects: Project[];
+  selectedProj: string;
   tasks: Task[];
+  taskList: Task[];
   displayedColumns = ['task', 'parent', 'user', 'start_date', 'end_date', 'priority', 'actions'];
   dataSource: any;
 
-  filterValues = {
-    project: ''
-  };
-
   constructor(private taskService: TaskService, 
               private projectService: ProjectService,
-              private router: Router) { }
+              private parentService: ParentService,
+              private router: Router,
+              private fb: FormBuilder) { }
 
   ngOnInit() {
     // this.taskService.getTasks().subscribe((tasks) => {
@@ -35,25 +45,30 @@ export class ViewtaskComponent implements OnInit {
     this.fetchProjects();
   }
 
+  private _filter(value: string): Project[] {
+    const filterValue = value.toLowerCase();
+    let tmpProjs: Project[];
+
+    if (value) {
+      tmpProjs = this.projects.filter((lproj) => lproj.project_name.toLowerCase().includes(filterValue));
+    } else {
+      tmpProjs = this.projects;
+    }
+    return tmpProjs;
+  }
+
   fetchProjects() {
     this.projectService
       .getProjects()
         .subscribe((data: Project[]) => {
           this.projects = data;
-          // this.tasks.forEach((tmptask: Task) => {
-          //   //this.taskService.getTaskById('5c3c1678d104e54960669eb8').subscribe((res: Task) => {
-          //     if (tmptask.parent !== undefined) {
-          //       this.taskService.getTaskById(tmptask.parent).subscribe((res: Task) => {  
-          //         var restask: Task;
-          //         restask = res;
-          //         tmptask.parent = restask.task;
-          //     });
-          //   }
-          // });
           // console.log("Data requested...");
-          console.log(this.projects);
-          this.dataSource = new MatTableDataSource(this.projects);
-          this.dataSource.filterPredicate = this.taskFilterPredicate;
+          console.log("Projects: ", this.projects);
+          this.filteredOptions = this.myControl.valueChanges
+          .pipe(
+            startWith(''),
+            map(value => this._filter(value))
+          );
         });  
   }
 
@@ -66,27 +81,42 @@ export class ViewtaskComponent implements OnInit {
     //return formatDate(date, "MM/DD/YYYY");
   }
 
-  taskFilterPredicate(data: Project, filter: string) {
-    var searchTerms = JSON.parse(filter);
-
-    return (data.project_name.toLowerCase().indexOf(searchTerms.project_name) !== -1);
-
-  }  
 
   editTask(id) {
-    this.router.navigate([`/edittask/${id}`]);
+    console.log("Edit Task: ", id);
+    //this.router.navigate([`/edittask/${id}`]);
   }
 
   finishTask(id) {
     // this.taskService.endTask(id).subscribe(() => {
     //   this.fetchTasks();
     // });
+    console.log("Finish Task: ", id);
   }  
 
-  applyProjectFilter(filterValue: string) {
-    //this.dataSource.filter = filterValue.trim().toLowerCase();
-    this.filterValues.project = filterValue;
-    this.dataSource.filter = JSON.stringify(this.filterValues).toLowerCase();
+  getProjectTasks(projectName) {
+    let tmpProj: Project[];
+    console.log("get Project Tasks for Project: ", projectName);
+    tmpProj = this.projects.filter((lproj) => lproj.project_name.includes(projectName));
+    console.log("tmpProj: ", tmpProj);
+    console.log("tmpProj._id: ", tmpProj[0]._id);
+    this.taskService
+      .getTasksByProjectID(tmpProj[0]._id)
+        .subscribe((data: Task[]) => {
+          this.taskList = data;
+          console.log("this.taskList: ", this.taskList);
+          
+          this.taskList.forEach((tmptask: Task) => {
+              if (tmptask.parent !== undefined) {
+                this.parentService.getParentTaskById(tmptask.parent).subscribe((res: ParentTask) => {  
+                  tmptask.parent = res.parent_task;
+                });
+              }
+          });
+
+          this.dataSource = new MatTableDataSource(this.taskList);
+        });
 
   }
+
 }

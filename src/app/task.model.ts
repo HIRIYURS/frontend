@@ -1,10 +1,10 @@
 export interface Task {
-    task: String;
+    task: string;
     start_date: Date;
     end_date: Date;
     priority: Number;
     status: Boolean;
-    parent: String;
-    project: String;
-    user: String;
+    parent: string;
+    project: string;
+    user: string;
 }

@@ -17,6 +17,10 @@ export class TaskService {
     return this.http.get(`${this.uri}/tasks/${id}`);
   }
 
+  getTasksByProjectID(id) {
+    return this.http.get(`${this.uri}/gettasksbyproj/${id}`);
+  }
+
   addTask(task, start_date, end_date, priority, status, parent, project, user) {
     if (priority === undefined) {
       priority = "10";

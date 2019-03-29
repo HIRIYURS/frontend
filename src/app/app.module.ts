@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MatToolbarModule, MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, MatDividerModule, MatSnackBarModule } from '@angular/material';
+import { MatToolbarModule, MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, MatDividerModule, MatSnackBarModule, MatAutocompleteModule } from '@angular/material';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 //import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -25,6 +25,7 @@ import { AddprojectComponent } from './components/addproject/addproject.componen
 import { UserService } from './user.service';
 import { TaskService } from './task.service';
 import { ProjectService } from './project.service';
+import { ParentService } from './parent.service';
 
 const routes: Routes = [
   { path: 'addtask', component: AddtaskComponent},
@@ -72,12 +73,14 @@ const routes: Routes = [
     MatDividerModule, 
     MatSnackBarModule,
     MatSliderModule,
-    MatDatepickerModule    
+    MatDatepickerModule,
+    MatAutocompleteModule    
   ],
   providers: [
     TaskService,
     ProjectService,
-    UserService
+    UserService,
+    ParentService
   ],
   bootstrap: [AppComponent]
 })
