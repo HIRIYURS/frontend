@@ -55,10 +55,26 @@ export class EdittaskComponent implements OnInit {
   }
 
   myEndDateFilter = (pDay: Date): boolean => {
-    console.log("pDay: ", pDay);
-    console.log("this.task.start_date: ", this.task.start_date);
-    return pDay > this.task.start_date;
+    let myCond: boolean;
+    let sDate: Date = new Date(this.task.start_date);
+    if (pDay.getTime() > sDate.getTime()) {
+      myCond = true;
+    } else {
+      myCond = false;
+    }
+    return myCond;
   }
+
+  myStartDateFilter = (pDay: Date): boolean => {
+    let myCond: boolean;
+    let eDate: Date = new Date(this.task.end_date);
+    if (pDay.getTime() < eDate.getTime()) {
+      myCond = true;
+    } else {
+      myCond = false;
+    }
+    return myCond;
+  }  
 
   createForm() {
     this.updateForm = this.fb.group({

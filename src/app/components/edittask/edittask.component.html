@@ -15,13 +15,13 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="startpicker" placeholder="Task Start Date" formControlName="startdate" #startdate>
+        <input matInput [matDatepickerFilter]="myStartDateFilter" [matDatepicker]="startpicker" placeholder="Task Start Date" formControlName="startdate" #startdate>
         <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>
         <mat-datepicker #startpicker></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field>
-          <input matInput [matDatepicker]="endpicker" placeholder="Task End date" formControlName="enddate" #enddate>
+          <input matInput [matDatepickerFilter]="myEndDateFilter" [matDatepicker]="endpicker" placeholder="Task End date" formControlName="enddate" #enddate>
           <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
           <mat-datepicker #endpicker></mat-datepicker>
       </mat-form-field>
