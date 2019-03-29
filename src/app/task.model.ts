@@ -1,4 +1,5 @@
 export interface Task {
+    _id: string;
     task: string;
     start_date: Date;
     end_date: Date;

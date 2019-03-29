@@ -88,16 +88,20 @@ export class ViewtaskComponent implements OnInit {
   }
 
 
-  editTask(id) {
-    console.log("Edit Task: ", id);
-    //this.router.navigate([`/edittask/${id}`]);
+  editTask(taskname) {
+    console.log("Edit Task: ", taskname);
+    let selectedTask = this.taskList.filter((ltask) => ltask.task.includes(taskname));
+    console.log("Edit Task: ", selectedTask[0]._id);
+    this.router.navigate([`/edittask/${selectedTask[0]._id}`]);
   }
 
-  finishTask(id) {
-    // this.taskService.endTask(id).subscribe(() => {
-    //   this.fetchTasks();
-    // });
-    console.log("Finish Task: ", id);
+  finishTask(taskname) {
+    console.log("Edit Task: ", taskname);
+    let selectedTask = this.taskList.filter((ltask) => ltask.task.includes(taskname));
+    console.log("End Task: ", selectedTask[0]._id);
+    this.taskService.endTask(selectedTask[0]._id).subscribe(() => {
+      //this.fetchTasks();
+     });
   }  
 
   getProjectTasks(projectName) {

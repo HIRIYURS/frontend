@@ -1,3 +1,56 @@
-<p>
-  edittask works!
-</p>
+<div>
+  <br>
+  <mat-card>
+    <button mat-raised-button color="primary" class="mat-column-right" routerLink="/addproject">Add Project</button>
+    <button mat-raised-button color="primary" class="mat-column-right" routerLink="/adduser">Add User</button>
+    <button mat-raised-button color="secondary" class="mat-column-right" routerLink="/addtask">Add Task</button>
+    <button mat-raised-button color="primary" class="mat-column-right" routerLink="/viewtask">View Task</button>
+    <br>
+    <mat-divider></mat-divider>
+    <br>
+    <form [formGroup]="updateForm" class="edit-form">
+      <mat-form-field class="field-full-width">
+        <span class="label"></span>
+        <input matInput placeholder="Task title" formControlName="task" #task>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="startpicker" placeholder="Task Start Date" formControlName="startdate" #startdate>
+        <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>
+        <mat-datepicker #startpicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+          <input matInput [matDatepicker]="endpicker" placeholder="Task End date" formControlName="enddate" #enddate>
+          <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
+          <mat-datepicker #endpicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <input matInput type="number" placeholder="Priority" formControlName="priority" #priority>
+        <mat-slider min="1" max="30" step="1" thumbLabel formControlName="priority"  #priority></mat-slider>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <span class="label"></span>
+        <input matInput [readonly]="true" placeholder="Project" formControlName="project" #project>
+      </mat-form-field>        
+      
+      <mat-form-field class="field-full-width">
+        <span class="label"></span>
+        <input matInput [readonly]="true" placeholder="User" formControlName="user" #user>
+      </mat-form-field>      
+
+      <mat-form-field class="field-full-width">
+        <span class="label"></span>
+        <input matInput [readonly]="true" placeholder="Parent Task" formControlName="parent" #parent>
+      </mat-form-field>
+
+      
+      <mat-divider></mat-divider>
+      <br><br>
+      <button mat-raised-button color="accent" routerLink="/viewtask">Cancel</button>
+      <button type="submit" (click)="updateTask(task.value, startdate.value, enddate.value, priority.value)" [disabled]="updateForm.prestine || updateForm.invalid || updateForm.disabled" mat-raised-button color="primary">Update Task</button>
+    </form>    
+  </mat-card>
+</div>
