@@ -1,4 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
+//import {formatDate } from '@angular/common';
+import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+
+import { User } from '../../user.model';
+
+import { UserService } from '../../user.service';
+
 
 @Component({
   selector: 'app-viewuser',
@@ -6,10 +17,68 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./viewuser.component.css']
 })
 export class ViewuserComponent implements OnInit {
+  userForm: FormGroup = this.fb.group({
+    userName: '',
+  });
+  myControl = new FormControl();
+  filteredOptions: Observable<User[]>;  
+  userList: User[];
+  users: User[];
+  displayedColumns = ['firstname', 'lastname', 'employeeid', 'actions'];
+  dataSource: any;
 
-  constructor() { }
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  constructor(private userService: UserService, 
+              private router: Router,
+              private fb: FormBuilder) { }
 
   ngOnInit() {
+    // this.taskService.getTasks().subscribe((tasks) => {
+    //   console.log(tasks);
+    // });
+    this.fetchUsers();
   }
 
+  private _filter(value: string): User[] {
+    const filterValue = value.toLowerCase();
+    let tmpUsers: User[];
+
+    if (value) {
+      tmpUsers = this.users.filter((luser) => luser.first_name.toLowerCase().includes(filterValue));
+    } else {
+      tmpUsers = this.users;
+    }
+    return tmpUsers;
+  }
+
+  fetchUsers() {
+    this.userService
+      .getUsers()
+        .subscribe((data: User[]) => {
+          this.users = data;
+          this.dataSource = new MatTableDataSource(this.users);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+      
+          // console.log("Data requested...");
+          //console.log("Users: ", this.users);
+          this.filteredOptions = this.myControl.valueChanges
+          .pipe(
+            startWith(''),
+            map(value => this._filter(value))
+          );
+        });  
+  }
+
+  getUsers(userName) {
+    //let tmpUser: User[];
+    this.userList = this.users.filter((luser) => luser.first_name.includes(userName));
+
+    this.dataSource = new MatTableDataSource(this.userList);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;    
+  }
+  
 }

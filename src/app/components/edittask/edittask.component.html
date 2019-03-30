@@ -50,7 +50,7 @@
       <mat-divider></mat-divider>
       <br><br>
       <button mat-raised-button color="accent" routerLink="/viewtask">Cancel</button>
-      <button type="submit" (click)="updateTask(task.value, startdate.value, enddate.value, priority.value)" [disabled]="updateForm.prestine || updateForm.invalid || updateForm.disabled" mat-raised-button color="primary">Update Task</button>
+      <button mat-raised-button type="submit" (click)="updateTask(task.value, startdate.value, enddate.value, priority.value)" [disabled]="updateForm.prestine || updateForm.disabled || updateForm.untouched" color="primary">Update Task</button>
     </form>    
   </mat-card>
 </div>
