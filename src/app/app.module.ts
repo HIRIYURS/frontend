@@ -41,7 +41,7 @@ const routes: Routes = [
   { path: 'adduser', component: AdduserComponent},
   { path: 'edituser/:id', component: EdituserComponent},
   { path: 'viewuser', component: ViewuserComponent},
-  { path: '', redirectTo: 'viewproject', pathMatch: 'full'}
+  { path: '', redirectTo: 'viewtask', pathMatch: 'full'}
 ];
 
 @NgModule({
