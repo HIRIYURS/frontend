@@ -51,7 +51,7 @@
       <mat-divider></mat-divider>
       <br><br>
       <button mat-raised-button color="accent" routerLink="/viewtask">Cancel</button>
-      <button type="submit" (click)="updateProject(project_name.value, user.value, start_date.value, end_date.value, priority.value)" [disabled]="projectForm.prestine || projectForm.disabled || projectForm.untouched" mat-raised-button color="primary">Update Project</button>
+      <button type="submit" (click)="updateProject(project_name.value, user.value, start_date.value, end_date.value, priority.value)" [disabled]="projectForm.pristine || projectForm.disabled || projectForm.untouched" mat-raised-button color="primary">Update Project</button>
     </form>
   </mat-card>
 </div>

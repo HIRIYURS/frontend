@@ -69,7 +69,7 @@
       <mat-divider></mat-divider>
       <br><br>
       <button mat-raised-button color="accent" routerLink="/viewtask">Cancel</button>
-      <button type="submit" (click)="createTask(task.value, start_date.value, end_date.value, priority.value, parent.value, project.value, user.value)" [disabled]="createForm.prestine || createForm.invalid" mat-raised-button color="primary">Save</button>
+      <button type="submit" (click)="createTask(task.value, start_date.value, end_date.value, priority.value, parent.value, project.value, user.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary">Save</button>
     </form>
   </mat-card>
 </div>

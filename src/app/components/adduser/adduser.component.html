@@ -31,7 +31,7 @@
       <mat-divider></mat-divider>
       <br><br>
       <button mat-raised-button color="accent" routerLink="/viewtask">Cancel</button>
-      <button type="submit" (click)="createUser(firstname.value, lastname.value, employeeid.value)" [disabled]="userForm.prestine || userForm.disabled || userForm.untouched" mat-raised-button color="primary">Add User</button>
+      <button type="submit" (click)="createUser(firstname.value, lastname.value, employeeid.value)" [disabled]="userForm.pristine || userForm.disabled || userForm.untouched" mat-raised-button color="primary">Add User</button>
     </form>
   </mat-card>
 </div>
