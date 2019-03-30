@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatToolbarModule } from '@angular/material';
 
 import { EdittaskComponent } from './edittask.component';
 
@@ -8,6 +9,9 @@ describe('EdittaskComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        MatToolbarModule
+      ],
       declarations: [ EdittaskComponent ]
     })
     .compileComponents();

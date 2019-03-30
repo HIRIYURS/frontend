@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatToolbarModule } from '@angular/material';
 
 import { ViewtaskComponent } from './viewtask.component';
 
@@ -8,6 +9,9 @@ describe('ViewtaskComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        MatToolbarModule
+      ],
       declarations: [ ViewtaskComponent ]
     })
     .compileComponents();
