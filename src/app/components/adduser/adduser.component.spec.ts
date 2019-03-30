@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatToolbarModule } from '@angular/material';
 
 import { AdduserComponent } from './adduser.component';
 
@@ -8,6 +9,9 @@ describe('AdduserComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        MatToolbarModule
+      ],
       declarations: [ AdduserComponent ]
     })
     .compileComponents();
