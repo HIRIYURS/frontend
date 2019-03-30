@@ -58,6 +58,7 @@ export class ViewuserComponent implements OnInit {
       .getUsers()
         .subscribe((data: User[]) => {
           this.users = data;
+          this.userList = data;
           this.dataSource = new MatTableDataSource(this.users);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
@@ -81,4 +82,20 @@ export class ViewuserComponent implements OnInit {
     this.dataSource.sort = this.sort;    
   }
   
+  editUser(username) {
+    console.log("Edit User: ", username);
+    let selectedUser = this.userList.filter((luser) => luser.employee_id === username);
+    console.log("Edit User: ", selectedUser[0]._id);
+    this.router.navigate([`/edituser/${selectedUser[0]._id}`]);
+  }
+
+  deleteUser(username) {
+    console.log("Delete User: ", username);
+    let selectedUser = this.userList.filter((luser) => luser.employee_id === username);
+    console.log("Delete User: ", selectedUser[0]._id);
+    this.userService.deleteUser(selectedUser[0]._id).subscribe(() => {
+      //this.fetchTasks();
+    });
+    this.router.navigate([`/adduser`]);
+  }    
 }

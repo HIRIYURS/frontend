@@ -16,4 +16,28 @@ export class UserService {
   getUserById(id) {
     return this.http.get(`${this.uri}/users/${id}`);
   }  
+
+  addUser(firstname, lastname, employeeid) {
+    let tmpuser: any;
+    tmpuser = {
+        first_name: firstname,
+        last_name: lastname,
+        employee_id: employeeid
+    };
+    return this.http.post(`${this.uri}/user/add`, tmpuser);
+  }
+
+  editUser(id, firstname, lastname, employeeid) {
+    let User = {
+      first_name: firstname,
+      last_name: lastname,
+      employee_id: employeeid
+    };
+    return this.http.post(`${this.uri}/user/update/${id}`, User);
+  }  
+
+  deleteUser(id) {
+    return this.http.get(`${this.uri}/user/delete/${id}`);
+  }
+
 }
