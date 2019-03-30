@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 import { UserService } from '../../user.service';
 
@@ -19,6 +20,7 @@ export class EdituserComponent implements OnInit {
   constructor(private userService: UserService,
               private fb: FormBuilder, 
               private router: Router,
+              private snackBar: MatSnackBar,
               private route: ActivatedRoute) {
     this.userForm = this.fb.group({
                             firstname: ['', Validators.required],
@@ -30,6 +32,9 @@ export class EdituserComponent implements OnInit {
   updateUser(firstname, lastname, employeeid) {
     let status: boolean = false;
     this.userService.editUser(this.user._id, firstname, lastname, employeeid).subscribe(() => {
+      this.snackBar.open('User updated Successfully!', 'OK', {
+        duration: 3000
+      });
       this.router.navigate(['/adduser']);
     });
   }  

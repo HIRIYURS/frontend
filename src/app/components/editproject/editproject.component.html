@@ -1,3 +1,58 @@
-<p>
-  editproject works!
-</p>
+<div>
+  <br>
+  <mat-card>
+    <button mat-raised-button color="secondary" class="mat-column-right" routerLink="/addproject">Add Project</button>
+    <button mat-raised-button color="primary" class="mat-column-right" routerLink="/adduser">Add User</button>
+    <button mat-raised-button color="primary" class="mat-column-right" routerLink="/addtask">Add Task</button>
+    <button mat-raised-button color="primary" class="mat-column-right" routerLink="/viewtask">View Task</button>
+    <br><br>
+  </mat-card>
+  <mat-divider></mat-divider>
+  <br>  
+  <mat-card>
+    <section class="mat-typography">
+      <h3>Create/Update Project</h3>
+    </section>
+    <mat-divider></mat-divider>
+    <br>
+    <form [formGroup]="projectForm" class="create-form">
+      <mat-form-field class="field-full-width">
+        <input matInput [readonly]="true" placeholder="Project Name" formControlName="project_name" #project_name>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <span class="label"></span>
+        <mat-select [(value)]="user.first_name" name="user" formControlName="user" #user>
+            <mat-option *ngFor="let myuser of users" [value]="myuser._id">
+              {{myuser.first_name}}
+            </mat-option>
+        </mat-select>  
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [matDatepickerFilter]="myStartDateFilter" [matDatepicker]="startDate" placeholder="Task Start Date" formControlName="start_date" #start_date>
+        <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+        <mat-datepicker #startDate></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [matDatepickerFilter]="myEndDateFilter" [matDatepicker]="endDate" placeholder="Task End date" formControlName="end_date" #end_date>
+        <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+        <mat-datepicker #endDate></mat-datepicker>
+      </mat-form-field>  
+
+      <mat-form-field class="field-full-width">
+        <input matInput type="number" placeholder="Priority" formControlName="priority" #priority>
+        <span matPrefix="0"></span>
+        <mat-slider min="1" max="30" step="1" thumbLabel formControlName="priority" #priority></mat-slider>
+        <span matSuffix="30"></span>
+      </mat-form-field>
+
+      <mat-divider></mat-divider>
+      <br><br>
+      <button mat-raised-button color="accent" routerLink="/viewtask">Cancel</button>
+      <button type="submit" (click)="updateProject(project_name.value, user.value, start_date.value, end_date.value, priority.value)" [disabled]="projectForm.prestine || projectForm.disabled || projectForm.untouched" mat-raised-button color="primary">Update Project</button>
+    </form>
+  </mat-card>
+</div>
+<app-viewproject></app-viewproject>

@@ -17,15 +17,15 @@
     <br>
     <form [formGroup]="userForm" class="create-form">
       <mat-form-field class="field-full-width">
-        <input matInput placeholder="First Name" formControlName="firstname" #firstname>
+        <input matInput [required]="true" placeholder="First Name" formControlName="firstname" #firstname>
       </mat-form-field>
 
       <mat-form-field class="field-full-width">
-        <input matInput placeholder="Last Name" formControlName="lastname" #lastname>
+        <input matInput [required]="true" placeholder="Last Name" formControlName="lastname" #lastname>
       </mat-form-field>      
 
       <mat-form-field class="field-full-width">
-        <input matInput placeholder="Employee ID" formControlName="employeeid" #employeeid>
+        <input matInput [required]="true" placeholder="Employee ID" formControlName="employeeid" #employeeid>
       </mat-form-field>      
 
       <mat-divider></mat-divider>

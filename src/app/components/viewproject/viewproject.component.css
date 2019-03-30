@@ -1,0 +1,21 @@
+table {
+    width: 100%;
+}
+
+.mat-column-right {
+    text-align: center;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 30%;
+  }
+  
+  .example-full-width {
+    width: 30%;
+  }
+
+  th.mat-sort-header-sorted {
+    color: black;
+  }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 import { UserService } from '../../user.service';
 
@@ -18,17 +19,25 @@ export class AdduserComponent implements OnInit {
 
   constructor(private userService: UserService,
               private fb: FormBuilder, 
-              private router: Router) {
-    this.userForm = this.fb.group({
-                            firstname: ['', Validators.required],
-                            lastname: '',
-                            employeeid: ''
-                      });    
+              private router: Router,
+              private snackBar: MatSnackBar) {
+    this.refreshForm();
   }
 
-  createTask(firstname, lastname, employeeid) {
-    let status: boolean = false;
+  refreshForm() {
+    this.userForm = this.fb.group({
+      firstname: ['', Validators.required],
+      lastname: '',
+      employeeid: ''
+    });    
+  }
+
+  createUser(firstname, lastname, employeeid) {
     this.userService.addUser(firstname, lastname, employeeid).subscribe(() => {
+      this.snackBar.open('User Added Successfully!', 'OK', {
+        duration: 3000
+      });
+      this.refreshForm();
       this.router.navigate(['/adduser']);
     });
   }  
