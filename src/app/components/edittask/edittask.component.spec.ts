@@ -81,7 +81,7 @@ describe('EdittaskComponent', () => {
   });
 
   it('should create', () => {
-    //expect(component).toBeTruthy();
-    expect(1).toBe(1);
+    expect(component).toBeTruthy();
+    //expect(1).toBe(1);
   });
 });
