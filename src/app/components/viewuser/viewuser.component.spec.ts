@@ -54,7 +54,10 @@ describe('ViewuserComponent', () => {
         MatPaginatorModule,
         MatSortModule   
       ],
-      declarations: [ ViewuserComponent ]
+      declarations: [ 
+        ViewuserComponent, 
+        EdituserComponent
+      ]
     })
     .compileComponents();
   }));

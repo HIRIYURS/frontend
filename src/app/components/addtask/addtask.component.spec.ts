@@ -54,7 +54,10 @@ describe('AddtaskComponent', () => {
         MatPaginatorModule,
         MatSortModule     
       ],
-      declarations: [ AddtaskComponent ]
+      declarations: [ 
+        AddtaskComponent,
+        ViewtaskComponent
+      ]
     })
     .compileComponents();
   }));

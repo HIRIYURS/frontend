@@ -54,7 +54,10 @@ describe('ViewtaskComponent', () => {
         MatPaginatorModule,
         MatSortModule   
       ],
-      declarations: [ ViewtaskComponent ]
+      declarations: [ 
+        ViewtaskComponent, 
+        EdittaskComponent
+      ]
     })
     .compileComponents();
   }));

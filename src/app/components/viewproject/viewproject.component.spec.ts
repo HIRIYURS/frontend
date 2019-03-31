@@ -54,7 +54,10 @@ describe('ViewprojectComponent', () => {
         MatPaginatorModule,
         MatSortModule   
       ],
-      declarations: [ ViewprojectComponent ]
+      declarations: [ 
+        ViewprojectComponent, 
+        EditprojectComponent
+      ]
     })
     .compileComponents();
   }));
