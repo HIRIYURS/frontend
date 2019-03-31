@@ -7,6 +7,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { EditprojectComponent } from './editproject.component';
+import { ViewprojectComponent } from '../viewproject/viewproject.component';
 
 describe('EditprojectComponent', () => {
   let component: EditprojectComponent;
@@ -33,7 +34,10 @@ describe('EditprojectComponent', () => {
         MatPaginatorModule,
         MatSortModule   
       ],
-      declarations: [ EditprojectComponent ]
+      declarations: [ 
+        EditprojectComponent,
+        ViewprojectComponent
+      ]
     })
     .compileComponents();
   }));

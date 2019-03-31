@@ -7,6 +7,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { EdituserComponent } from './edituser.component';
+import { ViewuserComponent } from '../viewuser/viewuser.component';
 
 describe('EdituserComponent', () => {
   let component: EdituserComponent;
@@ -33,7 +34,10 @@ describe('EdituserComponent', () => {
         MatPaginatorModule,
         MatSortModule   
       ],
-      declarations: [ EdituserComponent ]
+      declarations: [ 
+        EdituserComponent,
+        ViewuserComponent
+      ]
     })
     .compileComponents();
   }));
