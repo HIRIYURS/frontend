@@ -17,6 +17,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { EdituserComponent } from './edituser.component';
 import { ViewuserComponent } from '../viewuser/viewuser.component';
 
+import { UserService } from '../../user.service';
+
 const routes: Routes = [
   { path: 'edituser', component: EdituserComponent},
   { path: 'viewuser', component: ViewuserComponent},
@@ -57,7 +59,8 @@ describe('EdituserComponent', () => {
       declarations: [ 
         EdituserComponent,
         ViewuserComponent
-      ]
+      ],
+      providers: [ UserService ]
     })
     .compileComponents();
   }));

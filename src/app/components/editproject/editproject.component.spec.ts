@@ -17,6 +17,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { EditprojectComponent } from './editproject.component';
 import { ViewprojectComponent } from '../viewproject/viewproject.component';
 
+import { ProjectService } from '../../project.service';
+import { UserService } from '../../user.service';
+
 const routes: Routes = [
   { path: 'editproject', component: EditprojectComponent},
   { path: 'viewproject', component: ViewprojectComponent},
@@ -57,6 +60,10 @@ describe('EditprojectComponent', () => {
       declarations: [ 
         EditprojectComponent,
         ViewprojectComponent
+      ],
+      providers: [
+        ProjectService,
+        UserService
       ]
     })
     .compileComponents();

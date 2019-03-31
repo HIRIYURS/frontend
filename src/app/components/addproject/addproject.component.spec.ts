@@ -18,6 +18,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AddprojectComponent } from './addproject.component';
 import { ViewprojectComponent } from '../viewproject/viewproject.component';
 
+import { TaskService } from '../../task.service';
+import { ParentService } from '../../parent.service';
+import { ProjectService } from '../../project.service';
+import { UserService } from '../../user.service';
+
 const routes: Routes = [
   { path: 'addproject', component: AddprojectComponent},
   { path: 'viewproject', component: ViewprojectComponent},
@@ -58,6 +63,12 @@ describe('AddprojectComponent', () => {
       declarations: [ 
         AddprojectComponent,
         ViewprojectComponent 
+      ],
+      providers: [
+        ProjectService,
+        UserService,
+        TaskService,
+        ParentService
       ]
     })
     .compileComponents();

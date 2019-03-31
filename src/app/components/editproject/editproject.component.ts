@@ -53,22 +53,24 @@ export class EditprojectComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.id = params.id;
-      this.projectService.getProjectById(this.id).subscribe((res: Project) => {
-        this.project = res;
-        this.projectForm.get('project_name').setValue(this.project.project_name);       
+      if (params.id !== undefined) {
+        this.id = params.id;
+        this.projectService.getProjectById(this.id).subscribe((res: Project) => {
+          this.project = res;
+          this.projectForm.get('project_name').setValue(this.project.project_name);       
         
-        this.projectForm.get('priority').setValue(this.project.priority);
-        this.projectForm.get('start_date').setValue(this.project.start_date);
-        this.projectForm.get('end_date').setValue(this.project.end_date);
+          this.projectForm.get('priority').setValue(this.project.priority);
+          this.projectForm.get('start_date').setValue(this.project.start_date);
+          this.projectForm.get('end_date').setValue(this.project.end_date);
         
-        if (this.project.user != undefined) {
-          this.userService.getUserById(this.project.user).subscribe((data: User) => {
-            this.user = data;
-            this.projectForm.get('user').setValue(this.user.first_name);
-          });
-        }
-      });
+          if (this.project.user != undefined) {
+            this.userService.getUserById(this.project.user).subscribe((data: User) => {
+              this.user = data;
+              this.projectForm.get('user').setValue(this.user.first_name);
+            });
+          }
+        });
+      }
     });
     this.userService.getUsers().subscribe((res: User[]) => {
       this.users = res;

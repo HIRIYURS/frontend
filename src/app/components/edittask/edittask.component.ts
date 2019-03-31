@@ -93,36 +93,38 @@ export class EdittaskComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.id = params.id;
-      this.taskService.getTaskById(this.id).subscribe((res: Task) => {
-        this.task = res;
-        if (this.task.parent != undefined) {
-          this.parentService.getParentTaskById(this.task.parent).subscribe((data: ParentTask) => {
-            this.parent = data;
-            this.updateForm.get('parent').setValue(this.parent.parent_task);
+      if (params.id !== undefined) {
+        this.id = params.id;
+        this.taskService.getTaskById(this.id).subscribe((res: Task) => {
+          this.task = res;
+          if (this.task.parent != undefined) {
+            this.parentService.getParentTaskById(this.task.parent).subscribe((data: ParentTask) => {
+              this.parent = data;
+              this.updateForm.get('parent').setValue(this.parent.parent_task);
+            });
+          }
+          if (this.task.user != undefined) {
+            this.userService.getUserById(this.task.user).subscribe((data: User) => {
+              this.user = data;
+              this.updateForm.get('user').setValue(this.user.first_name);
+            });
+          }
+          this.projectService.getProjectById(this.task.project).subscribe((data: Project) => {
+            this.project = data;
+            this.updateForm.get('project').setValue(this.project.project_name);
           });
-        }
-        if (this.task.user != undefined) {
-          this.userService.getUserById(this.task.user).subscribe((data: User) => {
-            this.user = data;
-            this.updateForm.get('user').setValue(this.user.first_name);
-          });
-        }
-        this.projectService.getProjectById(this.task.project).subscribe((data: Project) => {
-          this.project = data;
-          this.updateForm.get('project').setValue(this.project.project_name);
-        });
-        this.updateForm.get('task').setValue(this.task.task);
+          this.updateForm.get('task').setValue(this.task.task);
 
         
-        this.updateForm.get('startdate').setValue(this.task.start_date);
-        this.updateForm.get('enddate').setValue(this.task.end_date);
-        this.updateForm.get('priority').setValue(this.task.priority);
+          this.updateForm.get('startdate').setValue(this.task.start_date);
+          this.updateForm.get('enddate').setValue(this.task.end_date);
+          this.updateForm.get('priority').setValue(this.task.priority);
         
-        if (this.task.status === true) {
-          this.updateForm.disable();
-        }
-      });
+          if (this.task.status === true) {
+            this.updateForm.disable();
+          }
+        });
+      }
     });
   }
 

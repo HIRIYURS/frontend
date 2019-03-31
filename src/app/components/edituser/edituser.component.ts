@@ -41,13 +41,15 @@ export class EdituserComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.id = params.id;
-      this.userService.getUserById(this.id).subscribe((res: User) => {
-        this.user = res;
-        this.userForm.get('firstname').setValue(this.user.first_name);       
-        this.userForm.get('lastname').setValue(this.user.last_name);
-        this.userForm.get('employeeid').setValue(this.user.employee_id);
-      });
+      if (params.id !== undefined) {
+        this.id = params.id;
+        this.userService.getUserById(this.id).subscribe((res: User) => {
+          this.user = res;
+          this.userForm.get('firstname').setValue(this.user.first_name);       
+          this.userForm.get('lastname').setValue(this.user.last_name);
+          this.userForm.get('employeeid').setValue(this.user.employee_id);
+        });
+      }
     });    
   }
 }

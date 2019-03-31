@@ -17,6 +17,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ViewtaskComponent } from './viewtask.component';
 import { EdittaskComponent } from '../edittask/edittask.component';
 
+import { TaskService } from '../../task.service';
+import { ProjectService } from '../../project.service';
+import { ParentService } from '../../parent.service';
+import { UserService } from '../../user.service';
+
 const routes: Routes = [
   { path: 'edittask', component: ViewtaskComponent},
   { path: 'viewtask', component: ViewtaskComponent},
@@ -57,6 +62,12 @@ describe('ViewtaskComponent', () => {
       declarations: [ 
         ViewtaskComponent, 
         EdittaskComponent
+      ],
+      providers: [
+        ProjectService,
+        UserService,
+        TaskService,
+        ParentService
       ]
     })
     .compileComponents();
