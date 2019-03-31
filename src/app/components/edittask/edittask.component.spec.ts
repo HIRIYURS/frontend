@@ -68,7 +68,8 @@ describe('EdittaskComponent', () => {
         ParentService,
         TaskService,
         UserService,
-        ProjectService
+        ProjectService,
+        ActivatedRoute
       ]
     })
     .compileComponents();
