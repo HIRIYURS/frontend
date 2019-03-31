@@ -30,8 +30,8 @@ const routes: Routes = [
 ];
 
 describe('EdittaskComponent', () => {
-  let component: EdittaskComponent;
-  let fixture: ComponentFixture<EdittaskComponent>;
+  let component: ViewtaskComponent;
+  let fixture: ComponentFixture<ViewtaskComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -68,15 +68,14 @@ describe('EdittaskComponent', () => {
         ParentService,
         TaskService,
         UserService,
-        ProjectService,
-        ActivatedRoute
+        ProjectService
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EdittaskComponent);
+    fixture = TestBed.createComponent(ViewtaskComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
