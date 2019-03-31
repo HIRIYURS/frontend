@@ -20,7 +20,7 @@ import { EdituserComponent } from '../edituser/edituser.component';
 import { UserService } from '../../user.service';
 
 const routes: Routes = [
-  { path: 'edituser', component: EdituserComponent},
+  { path: 'edituser/:id', component: EdituserComponent},
   { path: 'viewuser', component: ViewuserComponent},
   { path: '', redirectTo: 'viewuser', pathMatch: 'full'}
 ];

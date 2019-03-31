@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, ActivatedRoute } from '@angular/router';
 
 //import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -24,7 +24,7 @@ import { ProjectService } from '../../project.service';
 import { UserService } from '../../user.service';
 
 const routes: Routes = [
-  { path: 'edittask', component: EdittaskComponent},
+  { path: 'edittask/:id', component: EdittaskComponent},
   { path: 'viewtask', component: ViewtaskComponent},
   { path: '', redirectTo: 'viewtask', pathMatch: 'full'}
 ];

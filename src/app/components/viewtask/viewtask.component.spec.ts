@@ -23,7 +23,7 @@ import { ParentService } from '../../parent.service';
 import { UserService } from '../../user.service';
 
 const routes: Routes = [
-  { path: 'edittask', component: ViewtaskComponent},
+  { path: 'edittask/:id', component: ViewtaskComponent},
   { path: 'viewtask', component: ViewtaskComponent},
   { path: '', redirectTo: 'viewtask', pathMatch: 'full'}
 ];

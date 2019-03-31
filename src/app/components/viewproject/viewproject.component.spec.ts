@@ -22,7 +22,7 @@ import { ProjectService } from '../../project.service';
 import { UserService } from '../../user.service';
 
 const routes: Routes = [
-  { path: 'editproject', component: EditprojectComponent},
+  { path: 'editproject/:id', component: EditprojectComponent},
   { path: 'viewproject', component: ViewprojectComponent},
   { path: '', redirectTo: 'viewproject', pathMatch: 'full'}
 ];
