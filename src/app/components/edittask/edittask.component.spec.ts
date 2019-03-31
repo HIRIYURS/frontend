@@ -4,7 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { Router } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+//import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatToolbarModule, MatFormFieldModule, MatInputModule, MatOptionModule, 
@@ -37,7 +38,7 @@ describe('EdittaskComponent', () => {
       imports: [
         BrowserModule,
         BrowserAnimationsModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         RouterModule.forRoot(routes),
         FormsModule,
         ReactiveFormsModule,
