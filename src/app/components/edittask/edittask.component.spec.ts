@@ -16,7 +16,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { EdittaskComponent } from './edittask.component';
-import { ViewtaskComponent } from '../viewtask/viewtask.component';
+//import { ViewtaskComponent } from '../viewtask/viewtask.component';
 
 import { TaskService } from '../../task.service';
 import { ParentService } from '../../parent.service';
@@ -25,7 +25,7 @@ import { UserService } from '../../user.service';
 
 const routes: Routes = [
   { path: 'edittask/:id', component: EdittaskComponent},
-  { path: 'viewtask', component: ViewtaskComponent},
+//  { path: 'viewtask', component: ViewtaskComponent},
   { path: '', redirectTo: 'viewtask', pathMatch: 'full'}
 ];
 
@@ -61,8 +61,8 @@ describe('EdittaskComponent', () => {
         MatSortModule   
       ],
       declarations: [ 
-        EdittaskComponent,
-        ViewtaskComponent
+        EdittaskComponent
+        //ViewtaskComponent
       ],
       providers: [ 
         ParentService,
