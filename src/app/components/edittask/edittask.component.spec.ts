@@ -15,7 +15,7 @@ import { MatToolbarModule, MatFormFieldModule, MatInputModule, MatOptionModule,
 import { MatSliderModule } from '@angular/material/slider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
-//import { EdittaskComponent } from './edittask.component';
+import { EdittaskComponent } from './edittask.component';
 import { ViewtaskComponent } from '../viewtask/viewtask.component';
 
 import { TaskService } from '../../task.service';
@@ -23,11 +23,11 @@ import { ParentService } from '../../parent.service';
 import { ProjectService } from '../../project.service';
 import { UserService } from '../../user.service';
 
-// const routes: Routes = [
-// //  { path: 'edittask/:id', component: EdittaskComponent},
-//   { path: 'viewtask', component: ViewtaskComponent},
-//   { path: '', redirectTo: 'viewtask', pathMatch: 'full'}
-// ];
+const routes: Routes = [
+  { path: 'edittask/:id', component: EdittaskComponent},
+  { path: 'viewtask', component: ViewtaskComponent},
+  { path: '', redirectTo: 'viewtask', pathMatch: 'full'}
+];
 
 describe('EdittaskComponent', () => {
   let component: ViewtaskComponent;
@@ -39,7 +39,7 @@ describe('EdittaskComponent', () => {
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        //RouterModule.forRoot(routes),
+        RouterModule.forRoot(routes),
         FormsModule,
         ReactiveFormsModule,
         MatToolbarModule,
@@ -60,28 +60,27 @@ describe('EdittaskComponent', () => {
         MatPaginatorModule,
         MatSortModule   
       ],
-      // declarations: [ 
-      //   //EdittaskComponent,
-      //   //ViewtaskComponent
-      // ],
-      // providers: [ 
-      //   ParentService,
-      //   TaskService,
-      //   UserService,
-      //   ProjectService
-      // ]
+      declarations: [ 
+        EdittaskComponent,
+        ViewtaskComponent
+      ],
+      providers: [ 
+        ParentService,
+        TaskService,
+        UserService,
+        ProjectService
+      ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    // fixture = TestBed.createComponent(ViewtaskComponent);
-    // component = fixture.componentInstance;
-    // fixture.detectChanges();
+    fixture = TestBed.createComponent(ViewtaskComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create', () => {
-    // expect(component).toBeTruthy();
-    expect(1).toBe(1);
+    expect(component).toBeTruthy();
   });
 });
