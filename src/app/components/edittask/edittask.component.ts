@@ -40,9 +40,6 @@ export class EdittaskComponent implements OnInit {
   project: Project;
   projectname: string;
 
-  minDate = new Date(2010, 0, 1);
-  maxDate = new Date(2025, 0, 1);
-
   constructor(private taskService: TaskService, 
               private parentService: ParentService,
               private projectService: ProjectService,
